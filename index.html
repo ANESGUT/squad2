@@ -471,6 +471,45 @@ html[data-mode="light"] pre.code{background:rgba(20,28,60,.04)}
 .nav-badge{margin-left:auto;min-width:20px;height:20px;padding:0 6px;border-radius:999px;background:#ef4444;color:#fff;font-size:11px;font-weight:700;display:inline-grid;place-items:center;box-shadow:0 0 0 2px var(--surface-solid)}
 .nav-badge[hidden]{display:none}
 
+/* ---------- Gemini bot ---------- */
+.bubble.bot{background:linear-gradient(var(--surface-solid),var(--surface-solid)) padding-box,linear-gradient(135deg,#4285f4,#9b72cb,#d96570) border-box;border:1.5px solid transparent;box-shadow:0 12px 28px -16px rgba(155,114,203,.7)}
+.bubble.bot .who{background:linear-gradient(90deg,#4285f4,#9b72cb,#d96570);-webkit-background-clip:text;background-clip:text;color:transparent}
+.bubble.bot.err{background:linear-gradient(var(--surface-solid),var(--surface-solid)) padding-box,linear-gradient(135deg,#ef4444,#f97316) border-box}
+.bubble.bot.err .txt{color:#f87171}
+.bot-av{display:inline-grid;place-items:center;border-radius:32%;background:linear-gradient(135deg,#4285f4,#9b72cb,#d96570);font-size:16px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.15)}
+.bubble .txt code{font:12.5px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;padding:1px 5px;border-radius:6px;background:var(--surface-3)}
+.bubble .txt .md-pre{margin:6px 0;padding:10px 12px;border-radius:10px;background:var(--surface-3);font:12.5px/1.5 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;white-space:pre-wrap;overflow-x:auto}
+.mention{font-weight:700;padding:0 5px;border-radius:7px;background:rgba(155,114,203,.18);color:#a78bfa}
+.msg.mine .mention{background:rgba(255,255,255,.22);color:inherit}
+.typing{display:inline-flex;gap:5px;align-items:center;padding:6px 2px;color:#9b72cb;font-size:12.5px}
+.typing i{width:7px;height:7px;border-radius:50%;background:currentColor;opacity:.35;animation:blink 1.2s infinite}
+.typing i:nth-child(2){animation-delay:.2s}.typing i:nth-child(3){animation-delay:.4s}
+.typing span{margin-left:6px;color:var(--muted)}
+@keyframes blink{40%{opacity:1;transform:translateY(-2px)}}
+.gem-chip{display:inline-flex;align-items:center;gap:6px;padding:5px 11px;border-radius:999px;font-size:12px;font-weight:650;border:1px solid transparent;background:linear-gradient(var(--surface-solid),var(--surface-solid)) padding-box,linear-gradient(135deg,#4285f4,#9b72cb,#d96570) border-box;cursor:pointer;white-space:nowrap}
+
+/* ---------- Yönetici (AI) paneli ---------- */
+.lock-card{max-width:440px;margin:40px auto;text-align:center;padding:36px 28px}
+.lock-card .kpi-ic{width:64px;height:64px;border-radius:22px;margin:0 auto 16px}
+.ai-user{border:1px solid var(--border);border-radius:18px;background:var(--surface-2);overflow:hidden}
+.ai-user+.ai-user{margin-top:10px}
+.ai-user summary{list-style:none;display:grid;grid-template-columns:auto minmax(0,1fr) auto auto;align-items:center;gap:12px;padding:12px 14px;cursor:pointer}
+.ai-user summary::-webkit-details-marker{display:none}
+.ai-user summary b{display:block;font-size:14.5px}
+.ai-user summary small{color:var(--muted);font-size:12px}
+.ai-count{font-size:20px;font-weight:750;font-variant-numeric:tabular-nums;text-align:right;line-height:1.1}
+.ai-count em{display:block;font-style:normal;font-size:11px;font-weight:600;color:var(--muted)}
+.ai-user .chev{transition:transform .2s;color:var(--muted)}
+.ai-user[open] .chev{transform:rotate(90deg)}
+.ai-bar{grid-column:1/-1;height:6px;border-radius:999px;background:var(--track);overflow:hidden}
+.ai-bar i{display:block;height:100%;border-radius:999px;background:linear-gradient(90deg,#4285f4,#9b72cb,#d96570)}
+.ai-qs{list-style:none;margin:0;padding:4px 14px 12px;display:flex;flex-direction:column;gap:6px}
+.ai-qs li{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:10px;align-items:center;padding:9px 12px;border-radius:12px;background:var(--surface-solid);border:1px solid var(--border);font-size:13.5px}
+.ai-qs li span:first-child{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:550}
+.ai-qs time{font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap}
+.st-ok{color:#22c55e}.st-err{color:#ef4444}.st-pend{color:#f59e0b}
+@media (max-width:640px){.ai-qs li{grid-template-columns:minmax(0,1fr) auto}.ai-qs li time{grid-column:1;grid-row:2}}
+
 /* ---------- Modal & toast ---------- */
 .modal-backdrop{position:fixed;inset:0;z-index:100;display:grid;place-items:center;padding:20px;background:rgba(5,7,15,.45);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);opacity:0;transition:opacity .18s}
 .modal-backdrop.show{opacity:1}
@@ -576,6 +615,15 @@ const firebaseConfig = {
   measurementId: "G-5MMVED2N2M",
   databaseURL: "https://squad-pulse-e18b3-default-rtdb.firebaseio.com"
 };
+
+/* ---------------- 🤖 GEMINI YAPAY ZEKA + 🔒 YÖNETİCİ PANELİ AYARLARI ---------------- */
+const GEMINI_API_KEY = "AQ.Ab8RN6LqjWUH7q2NgLBtx8AUk8zkfkKY3mBkb34m-C8uJzCKvw";          // ← Google AI Studio API anahtarını buraya yaz
+const GEMINI_MODEL = "gemini-1.5-flash";                   // İstenen model
+// "gemini-1.5-flash" Google tarafından 29 Eylül 2025'te kapatıldı (404 döner).
+// Model bulunamazsa aşağıdakiler sırayla otomatik denenir; "gemini-flash-latest" her zaman güncel Flash modelidir.
+const GEMINI_FALLBACK_MODELS = ["gemini-flash-latest", "gemini-3.5-flash", "gemini-2.5-flash"];
+const ADMIN_PANEL_PASSWORD = "1234";                       // Yönetici sekmesi şifresi
+const APP_VERSION = "v2.1 · Gemini + Yönetici";
 const DB_ROOT = 'squadpulse/v1';        // Veritabanındaki kök yol
 const HISTORY_DAYS = 120;               // Canlı dinlenen geçmiş (gün)
 const CHAT_LIMIT = 300;                 // Sohbette canlı dinlenen son mesaj sayısı
@@ -668,7 +716,8 @@ const ic = (n, s = 18) => `<svg class="ic" width="${s}" height="${s}" viewBox="0
      sessions/{sessionId}  → { userId, activityId, note, start, end }
      days/{userId_tarih}   → { userId, date, start, end }   (Güne Başladım / Günü Tamamla)
      presence/{userId}     → { connections:{…}, lastSeen }  (çevrimiçi durumu)
-     messages/{messageId}  → { userId, text, at }            (canlı ekip sohbeti)
+     messages/{messageId}  → { userId, text, at }            (canlı ekip sohbeti; Gemini cevapları userId:'gemini')
+     ai_logs/{logId}       → { userId, userName, title, at, status, model }  (Gemini kullanım kayıtları)
    Her değişiklik belge bazında yazılır, böylece 3 kişi aynı anda yazsa da çakışma olmaz.
 ---------------------------------------------------------- */
 const Net = { mode: 'firebase', connected: false, ready: false, error: null };
@@ -701,7 +750,7 @@ const FirebaseBackend = {
     const since = NOW() - HISTORY_DAYS * DAY, loaded = new Set();
     const bind = (col, ref) => ref.on('value', snap => {
       DB.setCache(col, snap.val());
-      if (!loaded.has(col)) { loaded.add(col); if (loaded.size === 6) resolve(); }
+      if (!loaded.has(col)) { loaded.add(col); if (loaded.size === 7) resolve(); }
       else App.onRemote(col);
     }, err => { if (!Net.ready) reject(err); else { Net.error = err; App.render(); } });
     bind('settings', this.root.child('settings'));
@@ -710,6 +759,7 @@ const FirebaseBackend = {
     bind('sessions', this.root.child('sessions').orderByChild('start').startAt(since));
     bind('days', this.root.child('days').orderByChild('date').startAt(T.key(since)));
     bind('messages', this.root.child('messages').orderByChild('at').limitToLast(CHAT_LIMIT));
+    bind('ai_logs', this.root.child('ai_logs').orderByChild('at').limitToLast(2000));
   },
   ref(path) { return this.root.child(path); },
   set(path, v) { return this.root.child(path).set(v).catch(onWriteError); },
@@ -729,7 +779,7 @@ const LocalBackend = {
     Net.connected = true;
     return Promise.resolve();
   },
-  load() { ['settings', 'users', 'sessions', 'days', 'presence', 'messages'].forEach(c => DB.setCache(c, this.data[c])); },
+  load() { ['settings', 'users', 'sessions', 'days', 'presence', 'messages', 'ai_logs'].forEach(c => DB.setCache(c, this.data[c])); },
   save() { try { localStorage.setItem(this.key, JSON.stringify(this.data)); } catch (e) { toast('Kaydedilemedi: depolama alanı dolu olabilir.', 'error'); } },
   put(path, v) {
     const p = path.split('/'); let o = this.data;
@@ -752,7 +802,7 @@ const LocalBackend = {
 /* Uygulamanın konuştuğu tek veri arayüzü — önbellek + seçili backend */
 const DB = {
   backend: null,
-  cache: { settings: null, users: {}, sessions: {}, days: {}, presence: {}, messages: {} },
+  cache: { settings: null, users: {}, sessions: {}, days: {}, presence: {}, messages: {}, ai_logs: {} },
   _arr: {},
   setCache(col, val) {
     if (col === 'settings') this.cache.settings = normalizeSettings(val);
@@ -920,7 +970,7 @@ const Auth = {
   current: null,
   restore() { try { const a = JSON.parse(localStorage.getItem(this.key) || 'null'); if (a && a.userId && DB.find('users', a.userId)) this.current = a.userId; } catch (e) {} },
   login(id) { this.current = id; try { localStorage.setItem(this.key, JSON.stringify({ userId: id })); } catch (e) {} Presence.attach(id); },
-  logout() { this.current = null; try { localStorage.removeItem(this.key); } catch (e) {} Presence.detach(); },
+  logout() { this.current = null; try { localStorage.removeItem(this.key); } catch (e) {} Presence.detach(); if (typeof AdminGate !== 'undefined') AdminGate.unlocked = false; },
   user() { return this.current ? DB.find('users', this.current) : null; },
   isAdmin() { return this.user()?.role === 'admin'; }
 };
@@ -1159,6 +1209,7 @@ const NAV = [
   { id: 'reports', label: 'Raporlar', icon: 'chart', admin: true },
   { id: 'members', label: 'Üyeler', icon: 'shield', admin: true },
   { id: 'settings', label: 'Sistem Ayarları', icon: 'settings', admin: true },
+  { id: 'aipanel', label: 'Yönetici', icon: 'lock' },   // herkese görünür, 1234 şifresiyle açılır
   { id: 'profile', label: 'Profil & Tema', icon: 'palette' }
 ];
 const EMOJIS = ['🦊', '🐼', '🦁', '🐯', '🐨', '🐸', '🦄', '🐙', '🚀', '🎧', '🌿', '⚡', '🔥', '🎯'];
@@ -1171,7 +1222,8 @@ const RULES_SNIPPET = `{
       "v1": {
         "sessions": { ".indexOn": ["start"] },
         "days": { ".indexOn": ["date"] },
-        "messages": { ".indexOn": ["at"] }
+        "messages": { ".indexOn": ["at"] },
+        "ai_logs": { ".indexOn": ["at"] }
       }
     }
   }
@@ -1215,7 +1267,7 @@ Views.login = () => {
         <div class="lu-right">${u.role === 'admin' ? '<span class="badge">Yönetici</span>' : '<span class="badge gray">Üye</span>'}${statusPill(st, true)}</div></button>`; }).join('')}</div>
       ${hint ? `<p class="hint">${ic('shield', 15)}<span>Başlangıç yönetici PIN kodu: <b>1234</b> · Profil sayfasından hemen değiştir.</span></p>` : ''}
     </div>
-    <p class="login-foot">${netBadge()} ${Net.mode === 'local' ? `<button class="btn btn-ghost btn-sm" data-act="useFirebase">${ic('wifi', 14)} Firebase'e bağlan</button>` : 'Tüm değişiklikler ekipte anında görünür.'}</p>
+    <p class="login-foot"><span class="badge">${APP_VERSION}</span> ${netBadge()} ${Net.mode === 'local' ? `<button class="btn btn-ghost btn-sm" data-act="useFirebase">${ic('wifi', 14)} Firebase'e bağlan</button>` : 'Tüm değişiklikler ekipte anında görünür.'}</p>
   </div>`;
 };
 
@@ -1231,7 +1283,7 @@ Views.shell = () => {
   const dark = document.documentElement.dataset.mode === 'dark';
   return `<div class="app">
     <aside class="sidebar"><div class="card side">
-      <div class="brand">${logo()}<div><b>Squad Pulse</b><span>${esc(s.teamName)}</span></div></div>
+      <div class="brand">${logo()}<div><b>Squad Pulse</b><span>${esc(s.teamName)}</span><span class="badge" style="margin-top:4px">${APP_VERSION}</span></div></div>
       <nav class="nav" id="tabBar" role="tablist">${nav.map(n => `<button type="button" class="nav-item ${App.view === n.id ? 'active' : ''}" data-nav="${n.id}" role="tab" aria-selected="${App.view === n.id}" title="${n.label}">${ic(n.icon, 19)}<span>${n.label}</span>${n.id === 'chat' ? `<b class="nav-badge" id="chatBadge" ${Chat.unread() ? '' : 'hidden'}>${Chat.unread() > 99 ? '99+' : Chat.unread()}</b>` : ''}</button>`).join('')}</nav>
       <div class="side-foot"><div class="me">${avatarDot(u, 40, st)}<div class="me-meta"><b>${esc(u.name)}</b><span>${u.role === 'admin' ? 'Yönetici' : 'Üye'}</span></div>
         <button class="btn-icon sm" data-act="logout" title="Çıkış yap">${ic('logout', 16)}</button></div></div>
@@ -1594,7 +1646,7 @@ Views.profile = () => {
 const Chat = {
   draft: '',
   readKey() { return 'squadpulse.chatRead.' + Auth.current; },
-  list() { return DB.get('messages').filter(m => m && m.text).sort((a, b) => (a.at - b.at) || (a.id < b.id ? -1 : 1)); },
+  list() { return DB.get('messages').filter(m => m && (m.text || m.pending)).sort((a, b) => (a.at - b.at) || (a.id < b.id ? -1 : 1)); },
   lastRead() { try { return +localStorage.getItem(this.readKey()) || 0; } catch (e) { return this._read || 0; } },
   markRead() {
     const last = this.list().reduce((a, m) => Math.max(a, m.at || 0), 0);
@@ -1612,10 +1664,12 @@ const Chat = {
     DB.insert('messages', m);
     inp.value = ''; this.draft = ''; this.autoGrow(inp); inp.focus();
     this.renderList([m.id]); this.markRead();
+    if (Gemini.TRIGGER.test(text)) Gemini.handle(m);
   },
   stick: true,
   stickToBottom() { const el = $('#chatList'); if (el && this.stick) el.scrollTop = el.scrollHeight; },
   autoGrow(el) { el.style.height = 'auto'; el.style.height = Math.min(el.scrollHeight + 2, 140) + 'px'; },
+  senderName(m) { if (m.bot || m.userId === Gemini.BOT_ID) return Gemini.NAME; const u = DB.find('users', m.userId); return u ? u.name : 'Eski üye'; },
   dayLabel(ts) {
     const d = T.sod(ts), today = T.sod();
     if (d === today) return 'Bugün';
@@ -1641,12 +1695,22 @@ Views.chatMessages = (pop = new Set()) => {
     if (day !== lastDay) { html += `<div class="day-sep">${Chat.dayLabel(m.at)}</div>`; lastDay = day; }
     const sameAsPrev = prev && prev.userId === m.userId && T.key(prev.at) === day && m.at - prev.at < 5 * MIN;
     const sameAsNext = next && next.userId === m.userId && T.key(next.at) === day && next.at - m.at < 5 * MIN;
+    if (m.bot || m.userId === Gemini.BOT_ID) {
+      const stale = m.pending && NOW() - m.at > 120000;
+      const body = m.pending && !stale ? `<span class="typing"><i></i><i></i><i></i><span>düşünüyor…</span></span>`
+        : stale ? '⚠️ Yanıt alınamadı (soruyu soran kişinin bağlantısı kesildi).' : miniMd(m.text);
+      html += `<div class="msg theirs bot ${sameAsPrev ? '' : 'first'} ${sameAsNext ? '' : 'last'} ${pop.has(m.id) ? 'pop' : ''}" data-mid="${esc(m.id)}">
+        <span class="av-slot">${sameAsNext ? '' : '<span class="bot-av" style="width:30px;height:30px">🤖</span>'}</span>
+        <div class="bubble bot ${m.error || stale ? 'err' : ''}"><span class="who">${Gemini.NAME}</span><div class="txt">${body}</div><span class="meta">${T.hm(m.at)}</span></div>
+      </div>`;
+      return;
+    }
     const u = DB.find('users', m.userId), mine = m.userId === me;
     const name = u ? (mine ? `${firstName(u.name)} (sen)` : u.name) : 'Eski üye';
     const color = u ? u.color : '#94a3b8';
     html += `<div class="msg ${mine ? 'mine' : 'theirs'} ${sameAsPrev ? '' : 'first'} ${sameAsNext ? '' : 'last'} ${pop.has(m.id) ? 'pop' : ''}" data-mid="${esc(m.id)}">
       ${mine ? '' : `<span class="av-slot">${sameAsNext ? '' : (u ? avatar(u, 30) : '')}</span>`}
-      <div class="bubble" style="--c:${color}"><span class="who">${esc(name)}</span><div class="txt">${esc(m.text)}</div><span class="meta">${T.hm(m.at)}</span></div>
+      <div class="bubble" style="--c:${color}"><span class="who">${esc(name)}</span><div class="txt">${esc(m.text).replace(/^(\s*)@gemini\b/i, '$1<span class="mention">@Gemini</span>')}</div><span class="meta">${T.hm(m.at)}</span></div>
     </div>`;
   });
   return html;
@@ -1658,15 +1722,153 @@ Views.chat = () => {
     <header class="chat-head">
       <span class="kpi-ic">${ic('chat', 20)}</span>
       <div class="grow"><h3>Ekip Sohbeti</h3><p>${esc(DB.get('settings').teamName)} · ${online.length}/${users.length} çevrimiçi</p></div>
+      <button class="gem-chip" data-act="gemHint" title="Gemini'a soru sor">🤖 @Gemini</button>
       <div class="chat-members">${users.map(u => `<span title="${esc(u.name)} — ${Presence.online(u.id) ? 'çevrimiçi' : 'çevrimdışı'}">${avatarDot(u, 32, Presence.online(u.id) ? { key: 'active', color: '#22c55e' } : { key: 'offline', color: '#94a3b8' })}</span>`).join('')}</div>
     </header>
     <div class="chat-list" id="chatList" role="log" aria-live="polite">${Views.chatMessages()}</div>
     <div class="composer">
-      <textarea class="input" id="chatInput" rows="1" maxlength="1000" placeholder="Mesaj yaz… (Enter ile gönder)" autocomplete="off">${esc(Chat.draft)}</textarea>
+      <textarea class="input" id="chatInput" rows="1" maxlength="1000" placeholder="Mesaj yaz… · @Gemini ile yapay zekaya sor" autocomplete="off">${esc(Chat.draft)}</textarea>
       <button class="send-btn" data-act="sendChat" title="Gönder">${ic('send', 19)}</button>
     </div>
-    <div class="composer-hint">Enter: gönder · Shift + Enter: yeni satır</div>
+    <div class="composer-hint">Enter: gönder · Shift + Enter: yeni satır · Mesajı <b>@Gemini</b> ile başlatırsan yapay zeka herkesin göreceği şekilde cevaplar</div>
   </section>`;
+};
+
+/* ---- Gemini Asistan ---- */
+function miniMd(s) {
+  let h = esc(s);
+  h = h.replace(/```(\w*)\n?([\s\S]*?)```/g, (_, l, c) => `<span class="md-pre">${c.replace(/\n$/, '')}</span>`);
+  h = h.replace(/`([^`\n]+)`/g, '<code>$1</code>');
+  h = h.replace(/\*\*([^*\n]+)\*\*/g, '<b>$1</b>');
+  h = h.replace(/^#{1,6}\s+(.*)$/gm, '<b>$1</b>');
+  h = h.replace(/^(\s*)[*-]\s+/gm, '$1• ');
+  return h;
+}
+const Gemini = {
+  BOT_ID: 'gemini',
+  NAME: '🤖 Gemini Asistan',
+  TRIGGER: /^\s*@gemini\b[\s,:;.!?-]*/i,
+  hasKey() { return !!GEMINI_API_KEY && !/BURAYA/i.test(GEMINI_API_KEY); },
+  title(q) { const w = q.replace(/\s+/g, ' ').trim().split(' ').filter(Boolean); return w.slice(0, 6).join(' ') + (w.length > 6 ? '…' : ''); },
+  /** Soru soran kişinin cihazında çalışır: soruyu Gemini'a yollar, cevabı herkes için messages'a yazar */
+  async handle(userMsg) {
+    const me = Auth.user(); if (!me) return;
+    const question = userMsg.text.replace(this.TRIGGER, '').trim();
+    if (!question) { toast('Soru yazmayı unuttun: <b>@Gemini</b> sorunuz…'); return; }
+    const t = NOW(), rnd = () => Math.random().toString(36).slice(2, 7);
+    const botId = 'g' + t.toString(36) + rnd(), logId = 'l' + t.toString(36) + rnd();
+    DB.insert('ai_logs', { id: logId, userId: me.id, userName: me.name, title: this.title(question), at: t, status: 'pending' });
+    DB.insert('messages', { id: botId, userId: this.BOT_ID, bot: true, pending: true, text: '', at: t + 1, replyTo: userMsg.id, askedBy: me.id });
+    App.seenMsgs.add(botId); Chat.renderList([botId]);
+    let text, ok = true, model = null;
+    try { const r = await this.ask(question, me); text = r.text; model = r.model; }
+    catch (e) { ok = false; text = '⚠️ ' + (e.message || 'Bilinmeyen hata'); console.warn('[gemini]', e); }
+    DB.update('messages', botId, { text, pending: null, error: ok ? null : true, model });
+    DB.update('ai_logs', logId, { status: ok ? 'ok' : 'error', model, error: ok ? null : text.slice(0, 200) });
+    Chat.renderList([]);
+  },
+  async ask(question, me) {
+    if (!this.hasKey()) throw new Error('Gemini API anahtarı tanımlı değil. index.html içinde Firebase ayarlarının hemen altındaki GEMINI_API_KEY satırına anahtarını yaz.');
+    const s = DB.get('settings');
+    const recent = Chat.list().filter(m => !m.pending && m.text).slice(-11, -1)
+      .map(m => `${m.bot ? 'Gemini Asistan' : Chat.senderName(m)}: ${m.text.slice(0, 400)}`).join('\n');
+    const system = `Sen "${s.teamName}" ekibinin Squad Pulse uygulamasındaki ekip sohbetinde çalışan yardımcı asistansın (Gemini Asistan). ` +
+      `Ekip sohbetinde herkes cevabını görür. Varsayılan olarak Türkçe, samimi, kısa ve net yanıt ver (gerekmedikçe 150 kelimeyi geçme). Gerekirse madde işaretleri kullan.`;
+    const body = {
+      systemInstruction: { parts: [{ text: system }] },
+      contents: [{ role: 'user', parts: [{ text: (recent ? `Sohbetin son mesajları (bağlam için):\n${recent}\n\n` : '') + `${me.name} soruyor: ${question}` }] }],
+      generationConfig: { temperature: 0.7, maxOutputTokens: 1024 }
+    };
+    const models = [GEMINI_MODEL, ...GEMINI_FALLBACK_MODELS.filter(m => m && m !== GEMINI_MODEL)];
+    let lastErr = null;
+    for (const model of models) {
+      let res;
+      try {
+        res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(model)}:generateContent`, {
+          method: 'POST', headers: { 'Content-Type': 'application/json', 'x-goog-api-key': GEMINI_API_KEY }, body: JSON.stringify(body)
+        });
+      } catch (e) { throw new Error('Gemini sunucusuna ulaşılamadı (ağ hatası).'); }
+      let data = {}; try { data = await res.json(); } catch (e) {}
+      const msg = data?.error?.message || res.statusText || '';
+      if (res.status === 404) { lastErr = new Error(`Model bulunamadı: ${model}`); continue; }   // yedek modele geç
+      if (!res.ok) {
+        if (/api key not valid|API_KEY_INVALID/i.test(msg)) throw new Error('API anahtarı geçersiz. GEMINI_API_KEY değerini kontrol et.');
+        if (res.status === 429) throw new Error('Gemini kullanım kotası doldu. Biraz sonra tekrar dene.');
+        if (res.status === 403) throw new Error('API anahtarının bu isteğe izni yok (anahtar kısıtlamalarını kontrol et).');
+        throw new Error(`Gemini hatası (${res.status}): ${msg.slice(0, 160)}`);
+      }
+      const cand = data.candidates && data.candidates[0];
+      const text = ((cand && cand.content && cand.content.parts) || []).map(p => p.text || '').join('').trim();
+      if (!text) { const why = data.promptFeedback?.blockReason || cand?.finishReason; throw new Error(why ? `Gemini bu soruya yanıt vermedi (${why}).` : 'Gemini boş yanıt döndürdü.'); }
+      return { text: text.slice(0, 4000), model };
+    }
+    throw lastErr || new Error('Uygun Gemini modeli bulunamadı.');
+  }
+};
+
+/* ---- Gizli Yönetici Paneli (AI kullanım logları) ---- */
+const AdminGate = {
+  unlocked: false,
+  prompt() {
+    if (this.unlocked || Modal.el) return;
+    const check = w => {
+      const inp = $('#adminPw', w);
+      if (inp.value === ADMIN_PANEL_PASSWORD) { this.unlocked = true; toast('Yönetici paneli açıldı', 'success'); App.render(); return true; }
+      inp.classList.remove('shake'); void inp.offsetWidth; inp.classList.add('shake'); inp.value = ''; inp.focus(); return false;
+    };
+    Modal.open({
+      title: '🔒 Yönetici paneli',
+      body: `<p class="muted" style="margin-bottom:14px">Bu bölüm yalnızca yöneticiye açıktır. Devam etmek için panel şifresini gir.</p>
+        <input class="input pin-input" id="adminPw" type="password" autocomplete="off" placeholder="••••">`,
+      actions: [{ label: 'Vazgeç' }, { label: 'Kilidi aç', cls: 'btn-primary', onClick: w => check(w) }],
+      onMount: w => { const inp = $('#adminPw', w); setTimeout(() => inp.focus(), 60); inp.addEventListener('keydown', e => { if (e.key === 'Enter' && check(w) !== false) Modal.close(); }); }
+    });
+  },
+  lock() { this.unlocked = false; App.render(); }
+};
+
+Views.aipanel = () => {
+  if (!AdminGate.unlocked) return `<section class="card lock-card">
+    <span class="kpi-ic">${ic('lock', 28)}</span>
+    <h2 style="font-size:20px;margin-bottom:6px">Yönetici paneli kilitli</h2>
+    <p class="muted">Ekibin Gemini'a sorduğu soruları (ai_logs) görmek için yönetici şifresini gir.</p>
+    <button class="btn btn-primary mt" data-act="unlockAdmin">${ic('lock', 15)} Şifre gir</button></section>`;
+  const logs = DB.get('ai_logs').filter(l => l && l.at).sort((a, b) => b.at - a.at), t = NOW();
+  const done = logs.filter(l => l.status !== 'pending'), okN = done.filter(l => l.status === 'ok').length;
+  const byUser = {};
+  logs.forEach(l => { (byUser[l.userId] = byUser[l.userId] || { userId: l.userId, name: l.userName, items: [] }).items.push(l); });
+  const groups = Object.values(byUser).sort((a, b) => b.items.length - a.items.length);
+  const max = Math.max(1, ...groups.map(g => g.items.length));
+  const fmtAt = ts => T.key(ts) === T.key(t) ? `Bugün ${T.hm(ts)}` : T.fmt(ts, { day: 'numeric', month: 'short', year: T.fmt(ts, { year: 'numeric' }) === T.fmt(t, { year: 'numeric' }) ? undefined : 'numeric' }) + ' ' + T.hm(ts);
+  const stIcon = l => l.status === 'ok' ? `<span class="st-ok" title="Yanıtlandı">✓</span>` : l.status === 'error' ? `<span class="st-err" title="${esc(l.error || 'Hata')}">⚠</span>` : `<span class="st-pend" title="Bekliyor">…</span>`;
+  return `<div class="toolbar">
+      <p class="muted">Gemini Asistan kullanım kayıtları · <b style="color:var(--text)">${Gemini.hasKey() ? 'API anahtarı tanımlı' : 'API anahtarı tanımlı değil'}</b> · model: <code>${esc(GEMINI_MODEL)}</code> (yedek: <code>${esc(GEMINI_FALLBACK_MODELS[0])}</code>)</p>
+      <span class="spacer"></span>
+      <button class="btn btn-ghost" data-act="exportAiLogs">${ic('download', 15)} CSV indir</button>
+      <button class="btn btn-ghost danger" data-act="clearAiLogs">${ic('trash', 15)} Logları temizle</button>
+      <button class="btn btn-ghost" data-act="lockAdmin">${ic('lock', 15)} Kilitle</button>
+    </div>
+    <div class="grid g-4">
+      ${kpi('sparkles', 'Toplam soru', logs.length, 'Gemini’a sorulan')}
+      ${kpi('users', 'Soru soran kişi', groups.length, `${DB.get('users').length} üyeden`, '', 'deep')}
+      ${kpi('clock', 'Bugün', logs.filter(l => l.at >= T.sod(t)).length, 'soru', '', 'brk')}
+      ${kpi('check', 'Başarılı yanıt', done.length ? '%' + Math.round(okN / done.length * 100) : '—', `${done.length - okN} hata`, '', 'ok')}
+    </div>
+    <section class="card mt">
+      <div class="card-head"><h3>${ic('chart', 17)} Kullanıcı bazında Gemini kullanımı</h3><span class="sub">Satıra dokunarak soru başlıklarını aç/kapat</span></div>
+      ${groups.length ? groups.map((g, i) => {
+        const u = DB.find('users', g.userId), name = u ? u.name : (g.name || 'Eski üye');
+        return `<details class="ai-user" ${i === 0 ? 'open' : ''}>
+          <summary>${u ? avatar(u, 38) : `<span class="av" style="width:38px;height:38px;background:var(--surface-3)">?</span>`}
+            <div><b>${esc(name)}</b><small>Son soru: ${fmtAt(g.items[0].at)}</small></div>
+            <div class="ai-count">${g.items.length}<em>soru</em></div>
+            <span class="chev">${ic('right', 16)}</span>
+            <div class="ai-bar"><i style="width:${(g.items.length / max * 100).toFixed(1)}%"></i></div>
+          </summary>
+          <ol class="ai-qs">${g.items.map(l => `<li><span title="${esc(l.title)}">${esc(l.title || '(başlıksız)')}</span><time>${fmtAt(l.at)}</time>${stIcon(l)}</li>`).join('')}</ol>
+        </details>`;
+      }).join('') : emptyBox('sparkles', 'Henüz kayıt yok', 'Biri sohbette <b>@Gemini</b> ile soru sorduğunda kayıtlar burada görünür.')}
+    </section>`;
 };
 
 /* ---------------- 8. AKSİYONLAR ---------------- */
@@ -1845,7 +2047,7 @@ const Actions = {
   restoreActivity(el) { updateActivity(el.dataset.id, { archived: false }); toast('Aktivite geri alındı', 'success'); App.renderMain(); },
 
   exportJson() {
-    const data = { app: 'squad-pulse', version: 2, exportedAt: new Date(NOW()).toISOString(), data: { settings: DB.get('settings'), users: DB.cache.users, sessions: DB.cache.sessions, days: DB.cache.days, messages: DB.cache.messages } };
+    const data = { app: 'squad-pulse', version: 2, exportedAt: new Date(NOW()).toISOString(), data: { settings: DB.get('settings'), users: DB.cache.users, sessions: DB.cache.sessions, days: DB.cache.days, messages: DB.cache.messages, ai_logs: DB.cache.ai_logs } };
     download(`squad-pulse-yedek-${T.key(NOW())}.json`, JSON.stringify(data, null, 2), 'application/json'); toast('Yedek indirildi', 'success');
   },
   importJson() { $('#fileImport').click(); },
@@ -1866,13 +2068,26 @@ const Actions = {
     DB.multi({ messages: null }); toast('Sohbet temizlendi'); App.render();
   },
   sendChat() { Chat.send(); },
+  gemHint() { const i = $('#chatInput'); if (!i) return; if (!/^\s*@gemini/i.test(i.value)) i.value = '@Gemini ' + i.value.replace(/^\s+/, ''); Chat.draft = i.value; i.focus(); try { i.setSelectionRange(i.value.length, i.value.length); } catch (e) {} },
+  unlockAdmin() { AdminGate.prompt(); },
+  lockAdmin() { AdminGate.lock(); },
+  exportAiLogs() {
+    const q = v => `"${String(v ?? '').replace(/"/g, '""')}"`;
+    const rows = [['Tarih', 'Saat', 'Kullanıcı', 'Soru başlığı', 'Durum', 'Model'].map(q).join(';')];
+    DB.get('ai_logs').sort((a, b) => a.at - b.at).forEach(l => rows.push([T.key(l.at), T.hm(l.at), l.userName, l.title, l.status === 'ok' ? 'Yanıtlandı' : l.status === 'error' ? 'Hata' : 'Bekliyor', l.model || ''].map(q).join(';')));
+    download(`squad-pulse-gemini-loglari-${T.key(NOW())}.csv`, '\ufeff' + rows.join('\r\n'), 'text/csv;charset=utf-8'); toast('Loglar indirildi', 'success');
+  },
+  async clearAiLogs() {
+    if (!await confirmBox('Gemini loglarını temizle', 'Tüm yapay zeka kullanım kayıtları kalıcı olarak silinecek.', 'Temizle')) return;
+    DB.multi({ ai_logs: null }); toast('Loglar temizlendi'); App.render();
+  },
   async clearTime() {
     if (!await confirmBox('Tüm zaman kayıtlarını sil', 'Tüm oturum ve gün kayıtları HERKES için kalıcı olarak silinecek. Üyeler ve ayarlar korunur.', 'Hepsini sil')) return;
     DB.multi({ sessions: null, days: null }); DB.get('users').forEach(u => { if (u.pomo) DB.update('users', u.id, { pomo: null }); }); toast('Zaman kayıtları temizlendi'); App.render();
   },
   async resetAll() {
     if (!await confirmBox('Fabrika ayarlarına dön', 'Tüm üyeler, ayarlar ve kayıtlar veritabanından silinip başlangıç kurulumu yeniden oluşturulacak.', 'Sıfırla')) return;
-    await DB.multi({ settings: null, users: null, sessions: null, days: null, presence: null, messages: null, meta: null });
+    await DB.multi({ settings: null, users: null, sessions: null, days: null, presence: null, messages: null, ai_logs: null, meta: null });
     await Seed.run(); Auth.logout(); Theme.apply(Theme.defaults); App.go('dashboard'); toast('Uygulama sıfırlandı');
   },
 
@@ -1895,7 +2110,7 @@ const Actions = {
 
 /* ---------------- 9. UYGULAMA ÇEKİRDEĞİ ---------------- */
 const App = {
-  view: 'dashboard', report: { mode: 'daily', date: Date.now() }, pressing: false, pressTimer: null, seenMsgs: new Set(),
+  view: 'dashboard', report: { mode: 'daily', date: Date.now() }, pressing: false, pressTimer: null, seenMsgs: new Set(), pendingBots: new Set(), msgSig: '',
   pending: false, renderTimer: null, lastMinute: null, dayKey: null, started: false,
 
   async init() {
@@ -1950,16 +2165,25 @@ const App = {
   },
   /** Yeni sohbet mesajı geldiğinde: sohbet açıksa yalnızca liste güncellenir, değilse rozet + bildirim */
   onMessages() {
+    const answered = Chat.list().filter(m => m.bot && !m.pending && this.pendingBots.has(m.id));
+    answered.forEach(m => this.pendingBots.delete(m.id));
+    Chat.list().filter(m => m.bot && m.pending).forEach(m => this.pendingBots.add(m.id));
     const fresh = Chat.list().filter(m => !this.seenMsgs.has(m.id));
     fresh.forEach(m => this.seenMsgs.add(m.id));
+    // Gemini cevabı sonradan tamamlandığında (mesaj kimliği zaten görülmüş olsa da) diğer sekmelerde bildirim göster
+    if (!(this.view === 'chat' && $('#chatList'))) answered.forEach(m => { if (!fresh.some(f => f.id === m.id)) fresh.push(m); });
     if (!Auth.current) return;
+    const sig = Chat.list().map(m => m.id + (m.pending ? 'p' : '') + (m.text || '').length).join('|');
+    const changed = sig !== this.msgSig; this.msgSig = sig;
     if (this.view === 'chat' && $('#chatList')) {
-      Chat.renderList(fresh.map(m => m.id));
+      if (fresh.length || changed) Chat.renderList(fresh.map(m => m.id));
       if (!document.hidden) Chat.markRead();
     } else {
       fresh.filter(m => m.userId !== Auth.current).slice(-3).forEach(m => {
-        const u = DB.find('users', m.userId);
-        toast(`💬 <b>${esc(u ? firstName(u.name) : 'Eski üye')}:</b> ${esc(m.text.length > 70 ? m.text.slice(0, 70) + '…' : m.text)}`);
+        if (m.pending || !m.text) return;
+        const name = m.bot ? Gemini.NAME : firstName(Chat.senderName(m));
+        const plain = m.bot ? m.text.replace(/```[\s\S]*?```/g, ' ').replace(/[*`#_>]/g, '').replace(/\s+/g, ' ').trim() : m.text;
+        toast(`💬 <b>${esc(name)}:</b> ${esc(plain.length > 70 ? plain.slice(0, 70) + '…' : plain)}`);
       });
     }
     this.updateChatBadge();
@@ -1979,6 +2203,7 @@ const App = {
     clearTimeout(this.renderTimer); this.pending = false;
     this.render();
     window.scrollTo(0, 0);
+    if (this.view === 'aipanel' && !AdminGate.unlocked) setTimeout(() => AdminGate.prompt(), 60);
   },
   /** Adres çubuğundan veya geri tuşundan gelen değişiklikler */
   route() {
@@ -2001,7 +2226,8 @@ const App = {
   onRemote(col) {
     if (!this.started) return;
     if (col === 'messages' || col === '*') this.onMessages();
-    if (col === 'messages') return;   // sohbet mesajları sayfanın tamamını yeniden çizmez
+    if (col === 'messages') return;
+    if (col === 'ai_logs') { if (this.view === 'aipanel' && AdminGate.unlocked) this.scheduleRender(); return; }   // sohbet mesajları sayfanın tamamını yeniden çizmez
     if (Auth.current && !DB.find('users', Auth.current)) { Auth.logout(); }
     this.scheduleRender();
   },
@@ -2054,7 +2280,7 @@ const App = {
         if (!d.users || !d.settings) throw new Error('Geçersiz yedek dosyası.');
         const users = toMap(d.users);
         if (!await confirmBox('Yedekten yükle', `${Object.keys(users).length} üye ve ${Object.keys(toMap(d.sessions)).length} kayıt yüklenecek. Mevcut veriler HERKES için değiştirilecek.`, 'Yükle')) return;
-        await DB.multi({ settings: { ...Seed.settings(), ...d.settings }, users, sessions: toMap(d.sessions), days: toMap(d.days), messages: toMap(d.messages) });
+        await DB.multi({ settings: { ...Seed.settings(), ...d.settings }, users, sessions: toMap(d.sessions), days: toMap(d.days), messages: toMap(d.messages), ai_logs: toMap(d.ai_logs) });
         if (!DB.find('users', Auth.current)) Auth.logout();
         toast('Yedek yüklendi', 'success'); this.render();
       } catch (err) { toast(err.message || 'Dosya okunamadı', 'error'); }
